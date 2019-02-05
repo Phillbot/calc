@@ -121,7 +121,7 @@ const parenthesesAddRight = event => {
     value === "-" ||
     value === "*" ||
     value === "/" ||
-    value === "(" ||
+
     display.value.length < 2
   ) {
     return false;
