@@ -7,6 +7,16 @@ const other = document.querySelectorAll(".other-math button");
 const equally = document.querySelector(".equally");
 const history = document.querySelector(".history");
 
+const advShowBtn = document.querySelector(".show-advanced");
+const advPanel = document.querySelector('.advanced-panel');
+
+const advBtns = document.querySelectorAll('.advanced');
+
+
+advShowBtn.onclick = () => {
+  advPanel.classList.toggle('display-adv-panel')
+}
+
 const quallyFunc = () => {
   const p = document.createElement("p");
   const bugFix = display.value.length;
@@ -51,6 +61,14 @@ const fixNaN = q => {
 
 const evil = fn => {
   return new Function("return " + fn)();
+};
+
+const backspace = () => {
+  if (display.value.length !== 1) {
+    display.value = display.value.slice(0, -1);
+  } else {
+    display.value = "0";
+  }
 };
 
 const numbersAdd = event => {
@@ -121,7 +139,6 @@ const parenthesesAddRight = event => {
     value === "-" ||
     value === "*" ||
     value === "/" ||
-
     display.value.length < 2
   ) {
     return false;
@@ -202,11 +219,7 @@ other[3].onclick = () => {
 
 //backspace
 other[2].onclick = () => {
-  if (display.value.length !== 1) {
-    display.value = display.value.slice(0, -1);
-  } else {
-    display.value = "0";
-  }
+  backspace();
 };
 
 //C
@@ -236,3 +249,122 @@ other[0].onclick = event => {
     display.value += item.innerHTML;
   }
 };
+
+//Keyboard
+
+onkeydown = event => {
+  const item = event.key;
+  if (item === 0 || item <= 9) {
+    if (item === 0 && display.value[0] === "0" && display.value.length === 1) {
+      return false;
+    } else if (display.value[0] === "0" && display.value.length === 1) {
+      display.value = "";
+      display.value += item;
+    } else {
+      display.value += item;
+    }
+
+    if (display.value.length > 10) {
+      display.classList.add("long");
+    } else {
+      display.classList.remove("long");
+    }
+  }
+
+  if (item === "+" || item === "-" || item === "*" || item === "/") {
+    const value = display.value.slice(-1);
+
+    if (value === "+" || value === "-" || value === "*" || value === "/") {
+      return false;
+    } else {
+      display.value += item;
+    }
+  }
+
+  if (item === "=" || item === "Enter") {
+    quallyFunc();
+  }
+
+  if (item === "Backspace") {
+    backspace();
+  }
+
+  if (item === ".") {
+    const value = display.value.slice(-1);
+
+    if (
+      value === "+" ||
+      value === "-" ||
+      value === "*" ||
+      value === "/" ||
+      value === "(" ||
+      value === ")" ||
+      value === "."
+    ) {
+      return false;
+    } else {
+      display.value += item;
+    }
+  }
+
+  if (item === "(") {
+    const value = display.value.slice(-1);
+
+    if (
+      value === "+" ||
+      value === "-" ||
+      value === "*" ||
+      value === "/" ||
+      value === item
+    ) {
+      display.value += item;
+    } else {
+      return false;
+    }
+  }
+
+  if (item === ")") {
+    const value = display.value.slice(-1);
+
+    if (
+      value === "+" ||
+      value === "-" ||
+      value === "*" ||
+      value === "/" ||
+      display.value.length < 2
+    ) {
+      return false;
+    } else {
+      display.value += item;
+    }
+  }
+};
+
+
+//ADVANCED
+
+
+advBtns[0].onclick = () => {
+  display.value = display.value * display.value;
+
+
+
+  const p = document.createElement("p");
+  p.innerHTML = display.value;
+
+history.insertBefore(p, history.firstChild);
+
+  if (history.children.length > 5) {
+    history.lastChild.remove();
+  }
+
+  if (display.value === "Infinity" || display.value === "-Infinity") {
+    display.value = 0;
+    p.innerHTML = `JS cant calc more :( `;
+    history.insertBefore(p, history.firstChild);
+
+    if (history.children.length > 5) {
+      history.lastChild.remove();
+    }
+  }
+}
