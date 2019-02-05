@@ -19,19 +19,19 @@ const quallyFunc = () => {
   }
 
   p.innerHTML += ` = ${evil(display.value)}`;
-  history.appendChild(p);
+  history.insertBefore(p, history.firstChild);
 
   if (history.children.length > 5) {
-    history.children[0].remove();
+    history.lastChild.remove();
   }
 
   if (display.value === "Infinity" || display.value === "-Infinity") {
     display.value = 0;
     p.innerHTML = `JS cant calc more :( `;
-    history.appendChild(p);
+    history.insertBefore(p, history.firstChild);
 
     if (history.children.length > 5) {
-      history.children[0].remove();
+      history.lastChild.remove();
     }
   }
 };
@@ -40,12 +40,12 @@ const fixNaN = q => {
   if (isNaN(display.value)) {
     const p = document.createElement("p");
     p.innerHTML = "Error! Not a math";
-    history.appendChild(p);
+    history.insertBefore(p, history.firstChild);
     display.value = "0";
   } else {
     const p = document.createElement("p");
     p.innerHTML += `√${q} =  ${display.value}`;
-    history.appendChild(p);
+    history.insertBefore(p, history.firstChild);
   }
 };
 
@@ -145,8 +145,6 @@ other[4].onclick = () => {
   let operat;
   let val = display.value.length;
 
-  console.log(display.value.indexOf("+"));
-
   if (display.value.indexOf("+")) {
     firstNumber = display.value.slice(0, display.value.indexOf("+"));
     secondNumber = display.value.slice(display.value.indexOf("+") - (val - 1));
@@ -168,12 +166,12 @@ other[4].onclick = () => {
   if (isNaN(firstNumber) || isNaN(secondNumber)) {
     const p = document.createElement("p");
     p.innerHTML = "Error! Not a math";
-    history.appendChild(p);
+    history.insertBefore(p, history.firstChild);
     display.value = "0";
   }
 
   if (history.children.length > 5) {
-    history.children[0].remove();
+    history.lastChild.remove();
   }
 
   if (display.value.length > 10) {
@@ -192,7 +190,7 @@ other[3].onclick = () => {
   fixNaN(q);
 
   if (history.children.length > 5) {
-    history.children[0].remove();
+    history.lastChild.remove();
   }
 
   if (display.value.length > 10) {

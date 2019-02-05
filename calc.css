@@ -43,6 +43,41 @@ body {
     margin-bottom: 30px;
 }
 
+.history p:first-child{
+    opacity: .9;
+    margin-bottom: 20px;
+    animation: zoom .5s ease-in-out forwards;
+
+}
+
+@keyframes zoom {
+    from {
+        font-size: 11pt;
+    }
+
+    to {
+        font-size: 20pt;
+    }
+}
+
+.history p{
+    opacity: .9;
+    animation: zoom-in .5s ease-in-out forwards;
+
+}
+
+@keyframes zoom-in {
+    from {
+        
+        font-size: 20pt;
+    }
+
+    to {
+        font-size: 11pt;
+    }
+}
+
+
 .history::-webkit-scrollbar {
     width: 0;
 }
