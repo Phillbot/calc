@@ -1,0 +1,91 @@
+body {
+    background: url(bg.jpg)
+}
+
+* {
+    box-sizing: border-box;
+    color: azure;
+}
+
+.calc {
+    background: linear-gradient(to bottom, rgb(8, 6, 139) 0%, rgba(79, 12, 85, 0.22) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    margin: 20px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 350px;
+    padding: 40px 20px;
+    box-shadow: 0px 0px 10px 3px black;
+}
+
+.calc-display {
+    border: none;
+    width: 310px;
+    height: 80px;
+    padding: 20px;
+    font-size: 36pt;
+    background: none;
+}
+
+.long {
+    font-size: 12pt;
+}
+
+.history {
+    width: 100%;
+    word-wrap: break-word;
+    max-height: 150px;
+    overflow: auto;
+    opacity: .4;
+    font-size: 11pt;
+    font-style: italic;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.history::-webkit-scrollbar {
+    width: 0;
+}
+
+.panel {
+    display: flex;
+    justify-content: space-between;
+}
+
+.panel div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 3px;
+    justify-content: center;
+}
+
+.panel div:first-child {
+    align-items: center;
+}
+
+.panel div:first-child button {
+    width: 32px;
+    height: 42px;
+}
+
+.panel div button {
+    width: 32px !important;
+    width: 18px;
+    margin: 2px;
+    background: #306199;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #306199 0%, #3f12c9 50%, #207cca 100%, #7db9e8 100%, #609ac9 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #306199 0%, #3f12c9 50%, #207cca 100%, #7db9e8 100%, #609ac9 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #306199 0%, #3f12c9 50%, #207cca 100%, #7db9e8 100%, #609ac9 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#306199', endColorstr='#609ac9', GradientType=0);
+}
+
+@media (max-width:767px) {
+    .calc {
+        margin: 0 auto;
+    }
+}
