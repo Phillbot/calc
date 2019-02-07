@@ -278,6 +278,12 @@ other[0].onclick = event => {
 
 onkeydown = event => {
   const item = event.key;
+  const space = event.which
+  
+  if (space === 32) {
+    return false;
+  }
+
   if (item === 0 || item <= 9) {
     if (
       item === 0 &&
