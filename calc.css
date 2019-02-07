@@ -1,72 +1,75 @@
 * {
-    box-sizing: border-box;
-    color: #fff;
-    font-weight: 600;
-    font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  color: #fff;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background: url(bg.jpg);
+  background: url(bg.jpg);
 }
 
 .calc {
-    box-shadow: 0px 0 21px 1px black;
-    padding: 12px;
-    width: 400px;
-    margin: 20px auto;
-    background: linear-gradient(to bottom, rgb(8, 6, 139) 0%, rgba(79, 12, 85, 0.22) 100%);
+  box-shadow: 0px 0 21px 1px black;
+  width: 450px;
+  margin: 5px auto;
+  background: linear-gradient(
+    to bottom,
+    rgb(8, 6, 139) 0%,
+    rgba(79, 12, 85, 0.22) 100%
+  );
 }
 
 .calc-display {
-    border-radius: 10px;
-    margin: 0 auto;
-    padding: 20px;
-    height: 160px;
-    font-size: 32pt;
-    word-wrap: break-word;
-    overflow: auto;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 20px;
+  height: 200px;
+  font-size: 32pt;
+  word-wrap: break-word;
+  overflow: auto;
 }
 
 .long {
-    font-size: 16pt;
+  font-size: 16pt;
 }
 
 .history {
-    height: 100px;
-    overflow: auto;
-    margin: 5px 0 35px 0;
-    padding: 1px 20px 1px 20px;
+  height: 130px;
+  overflow: auto;
+  margin: 5px 0 10px 0;
+  padding: 1px 20px 1px 20px;
 }
 
 .history::-webkit-scrollbar,
 .calc-display::-webkit-scrollbar {
-    width: 0;
+  width: 0;
 }
 
 .history p {
-    margin: 5px 0 5px 0;
-    word-wrap: break-word;
-    opacity: .7;
+  margin: 5px 0 5px 0;
+  word-wrap: break-word;
+  opacity: 0.7;
 }
 
 .history p:first-of-type {
-    margin: 3px 0 5px 0;
-    word-wrap: break-word;
-    font-size: 18pt;
-    margin-bottom: 15px;
+  margin: 3px 0 5px 0;
+  word-wrap: break-word;
+  font-size: 18pt;
+  margin-bottom: 15px;
 }
 
 .long-history {
-    font-size: 10pt !important;
+  font-size: 10pt !important;
 }
 
 .panel {
-    font-size: 0;
-    margin: 0 auto;
+  font-size: 0;
+  margin: 0 auto;
 }
 
 .keyboard {
-    text-align: center;
+  text-align: center;
 }
 
 .numbers,
@@ -74,35 +77,42 @@ body {
 .parentheses,
 .other-math,
 .equally {
-    display: inline;
+  display: inline;
 }
 
 button {
-    width: 75px;
-    height: 40px;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom, #306199 0%, #3f12c9 50%, #207cca 100%, #7db9e8 100%, #609ac9 100%);
-    border: .5px solid grey;
+  width: 90px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(
+    to bottom,
+    #306199 0%,
+    #3f12c9 50%,
+    #207cca 100%,
+    #7db9e8 100%,
+    #609ac9 100%
+  );
+  border: 0.5px solid grey;
 }
 
 .equally button {
-    width: 225px;
+  width: 270px;
 }
 
 .show-advanced {
-    display: block;
-    width: auto;
-    margin: 20px auto;
+  display: block;
+  width: auto;
+  margin: 20px auto;
 }
 
-@media (max-width:500px) {
-    .calc {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    .equally button {
-        width: 95%;
-    }
+@media (max-width: 500px) {
+  .calc {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .equally button {
+    width: 95%;
+  }
 }
