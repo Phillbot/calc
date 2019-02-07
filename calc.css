@@ -96,17 +96,13 @@ button {
     margin: 20px auto;
 }
 
-
 @media (max-width:500px) {
     .calc {
         width: 100%;
         margin: 0;
         padding: 0;
     }
-
     .equally button {
         width: 95%;
     }
-    
-
 }
