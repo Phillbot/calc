@@ -1,111 +1,130 @@
 const buttons = document.querySelectorAll(".numbers button");
-
 const display = document.querySelector(".calc-display");
 const operations = document.querySelectorAll(".operations button");
 const parentheses = document.querySelectorAll(".parentheses button");
 const other = document.querySelectorAll(".other-math button");
 const equally = document.querySelector(".equally");
 const history = document.querySelector(".history");
+const advBtns = document.querySelectorAll(".advanced");
 
-const advShowBtn = document.querySelector(".show-advanced");
-const advPanel = document.querySelector('.advanced-panel');
-
-const advBtns = document.querySelectorAll('.advanced');
-
-
-advShowBtn.onclick = () => {
-  advPanel.classList.toggle('display-adv-panel')
-}
-
-const quallyFunc = () => {
-  const p = document.createElement("p");
-  const bugFix = display.value.length;
-
-  p.innerHTML = display.value;
-  display.value = evil(display.value);
-
-  if (bugFix === 7 && display.value === "0.09999999999999998") {
-    display.value = Math.ceil(display.value * 100) / 100;
-  }
-
-  p.innerHTML += ` = ${evil(display.value)}`;
-  history.insertBefore(p, history.firstChild);
-
-  if (history.children.length > 5) {
-    history.lastChild.remove();
-  }
-
-  if (display.value === "Infinity" || display.value === "-Infinity") {
-    display.value = 0;
-    p.innerHTML = `JS cant calc more :( `;
-    history.insertBefore(p, history.firstChild);
-
-    if (history.children.length > 5) {
-      history.lastChild.remove();
-    }
-  }
-};
+//service functions
 
 const fixNaN = q => {
-  if (isNaN(display.value)) {
+  if (isNaN(display.innerHTML)) {
     const p = document.createElement("p");
     p.innerHTML = "Error! Not a math";
     history.insertBefore(p, history.firstChild);
-    display.value = "0";
+    display.innerHTML = "0";
   } else {
     const p = document.createElement("p");
-    p.innerHTML += `√${q} =  ${display.value}`;
+    p.innerHTML += `√${q} =  ${display.innerHTML}`;
     history.insertBefore(p, history.firstChild);
   }
 };
 
 const evil = fn => {
-  return new Function("return " + fn)();
+  return new Function("return " + fn)(); //eval?
 };
 
-const backspace = () => {
-  if (display.value.length !== 1) {
-    display.value = display.value.slice(0, -1);
+const lengthFix = (elem, style = "long", l = 10) => {
+  if (elem.innerHTML.length > l) {
+    elem.classList.add(style);
   } else {
-    display.value = "0";
+    elem.classList.remove(style);
   }
 };
+
+const historyLength = () => {
+  for (let i = 0; i < history.children.length; i++) {
+    let item = history.children[i];
+    lengthFix(item, "long-history", 15);
+  }
+
+  if (history.children.length > 5) {
+    history.lastChild.remove();
+  }
+};
+
+// =
+
+const quallyFunc = () => {
+  const p = document.createElement("p");
+  const bugFix = display.innerHTML.length;
+  p.innerHTML = display.innerHTML;
+  display.innerHTML = evil(display.innerHTML);
+
+  if (bugFix === 7 && display.innerHTML === "0.09999999999999998") {
+    display.innerHTML = Math.ceil(display.innerHTML * 100) / 100;
+  }
+
+  p.innerHTML += ` = ${evil(display.innerHTML)}`;
+  history.insertBefore(p, history.firstChild);
+
+  historyLength();
+
+  if (display.innerHTML === "Infinity" || display.innerHTML === "-Infinity") {
+    display.innerHTML = 0;
+    p.innerHTML = `JS cant calc more :( `;
+    history.insertBefore(p, history.firstChild);
+
+    historyLength();
+  }
+};
+
+equally.onclick = () => {
+  quallyFunc();
+};
+
+//<= Backcpace
+
+const backspace = () => {
+  if (display.innerHTML.length !== 1) {
+    display.innerHTML = display.innerHTML.slice(0, -1);
+  } else {
+    display.innerHTML = "0";
+  }
+  lengthFix(display);
+};
+
+other[2].onclick = () => {
+  backspace();
+};
+
+//[0-9]
 
 const numbersAdd = event => {
   const item = event.target;
 
   if (
     item.innerHTML === "0" &&
-    display.value[0] === "0" &&
-    display.value.length === 1
+    display.innerHTML[0] === "0" &&
+    display.innerHTML.length === 1
   ) {
     return false;
-  } else if (display.value[0] === "0" && display.value.length === 1) {
-    display.value = "";
-    display.value += item.innerHTML;
+  } else if (display.innerHTML[0] === "0" && display.innerHTML.length === 1) {
+    display.innerHTML = "";
+    display.innerHTML += item.innerHTML;
   } else {
-    display.value += item.innerHTML;
+    display.innerHTML += item.innerHTML;
   }
 
-  if (display.value.length > 10) {
-    display.classList.add("long");
-  } else {
-    display.classList.remove("long");
-  }
+  lengthFix(display);
 };
 
 buttons.forEach(number => {
   number.onclick = numbersAdd;
 });
 
+//+-*/
+
 const operatorsAdd = event => {
   const item = event.target;
-  const value = display.value.slice(-1);
+  const value = display.innerHTML.slice(-1);
 
   if (value === "+" || value === "-" || value === "*" || value === "/") {
     return false;
   } else {
-    display.value += item.innerHTML;
+    display.innerHTML += item.innerHTML;
   }
 };
 
@@ -113,9 +132,11 @@ operations.forEach(operator => {
   operator.onclick = operatorsAdd;
 });
 
+// (,)
+
 const parenthesesAddleft = event => {
   const item = event.target;
-  const value = display.value.slice(-1);
+  const value = display.innerHTML.slice(-1);
 
   if (
     value === "+" ||
@@ -124,7 +145,7 @@ const parenthesesAddleft = event => {
     value === "/" ||
     value === item.innerHTML
   ) {
-    display.value += item.innerHTML;
+    display.innerHTML += item.innerHTML;
   } else {
     return false;
   }
@@ -132,100 +153,103 @@ const parenthesesAddleft = event => {
 
 const parenthesesAddRight = event => {
   const item = event.target;
-  const value = display.value.slice(-1);
+  const value = display.innerHTML.slice(-1);
 
   if (
     value === "+" ||
     value === "-" ||
     value === "*" ||
     value === "/" ||
-    display.value.length < 2
+    display.innerHTML.length < 2
   ) {
     return false;
   } else {
-    display.value += item.innerHTML;
+    display.innerHTML += item.innerHTML;
   }
 };
 
 parentheses[0].onclick = parenthesesAddleft;
 parentheses[1].onclick = parenthesesAddRight;
 
-equally.onclick = () => {
-  quallyFunc();
-};
-
-//%
+// %
 
 other[4].onclick = () => {
   let firstNumber;
   let secondNumber;
   let operat;
-  let val = display.value.length;
+  let val = display.innerHTML.length;
 
-  if (display.value.indexOf("+")) {
-    firstNumber = display.value.slice(0, display.value.indexOf("+"));
-    secondNumber = display.value.slice(display.value.indexOf("+") - (val - 1));
+  if (display.innerHTML.indexOf("+")) {
+    firstNumber = display.innerHTML.slice(0, display.innerHTML.indexOf("+"));
+    secondNumber = display.innerHTML.slice(
+      display.innerHTML.indexOf("+") - (val - 1)
+    );
 
     operat = "+";
   }
 
-  if (display.value.indexOf("+") === -1) {
-    firstNumber = display.value.slice(0, display.value.indexOf("-"));
-    secondNumber = display.value.slice(display.value.indexOf("-") - (val - 1));
+  if (display.innerHTML.indexOf("+") === -1) {
+    firstNumber = display.innerHTML.slice(0, display.innerHTML.indexOf("-"));
+    secondNumber = display.innerHTML.slice(
+      display.innerHTML.indexOf("-") - (val - 1)
+    );
 
     operat = "-";
   }
 
   const interest = (firstNumber / 100) * secondNumber;
 
-  display.value = `${firstNumber}${operat}${interest}`;
+  display.innerHTML = `${firstNumber}${operat}${interest}`;
 
   if (isNaN(firstNumber) || isNaN(secondNumber)) {
     const p = document.createElement("p");
     p.innerHTML = "Error! Not a math";
     history.insertBefore(p, history.firstChild);
-    display.value = "0";
+    display.innerHTML = "0";
   }
 
-  if (history.children.length > 5) {
-    history.lastChild.remove();
-  }
-
-  if (display.value.length > 10) {
-    display.classList.add("long");
-  } else {
-    display.classList.remove("long");
-  }
+  historyLength();
+  lengthFix(display);
 };
 
 //Math.sqrt(x)
 
 other[3].onclick = () => {
-  const q = display.value;
-  display.value = Math.sqrt(display.value);
+  const q = display.innerHTML;
+  display.innerHTML = Math.sqrt(display.innerHTML);
 
   fixNaN(q);
-
-  if (history.children.length > 5) {
-    history.lastChild.remove();
-  }
-
-  if (display.value.length > 10) {
-    display.classList.add("long");
-  } else {
-    display.classList.remove("long");
-  }
+  historyLength();
+  lengthFix(display);
 };
 
-//backspace
-other[2].onclick = () => {
-  backspace();
+//X2
+
+advBtns[0].onclick = () => {
+  display.innerHTML = display.innerHTML * display.innerHTML;
+
+  const p = document.createElement("p");
+  p.innerHTML = display.innerHTML;
+
+  history.insertBefore(p, history.firstChild);
+
+  historyLength();
+  lengthFix(display);
+
+  if (display.innerHTML === "Infinity" || display.innerHTML === "-Infinity") {
+    display.innerHTML = 0;
+    p.innerHTML = `JS cant calc more :( `;
+    history.insertBefore(p, history.firstChild);
+
+    historyLength();
+    lengthFix(display);
+  }
 };
 
 //C
 
 other[1].onclick = () => {
-  display.value = "0";
+  display.innerHTML = "0";
   display.classList.remove("long");
 };
 
@@ -233,7 +257,7 @@ other[1].onclick = () => {
 
 other[0].onclick = event => {
   const item = event.target;
-  const value = display.value.slice(-1);
+  const value = display.innerHTML.slice(-1);
 
   if (
     value === "+" ||
@@ -246,7 +270,7 @@ other[0].onclick = event => {
   ) {
     return false;
   } else {
-    display.value += item.innerHTML;
+    display.innerHTML += item.innerHTML;
   }
 };
 
@@ -255,29 +279,29 @@ other[0].onclick = event => {
 onkeydown = event => {
   const item = event.key;
   if (item === 0 || item <= 9) {
-    if (item === 0 && display.value[0] === "0" && display.value.length === 1) {
+    if (
+      item === 0 &&
+      display.innerHTML[0] === "0" &&
+      display.innerHTML.length === 1
+    ) {
       return false;
-    } else if (display.value[0] === "0" && display.value.length === 1) {
-      display.value = "";
-      display.value += item;
+    } else if (display.innerHTML[0] === "0" && display.innerHTML.length === 1) {
+      display.innerHTML = "";
+      display.innerHTML += item;
     } else {
-      display.value += item;
+      display.innerHTML += item;
     }
 
-    if (display.value.length > 10) {
-      display.classList.add("long");
-    } else {
-      display.classList.remove("long");
-    }
+    lengthFix(display);
   }
 
   if (item === "+" || item === "-" || item === "*" || item === "/") {
-    const value = display.value.slice(-1);
+    const value = display.innerHTML.slice(-1);
 
     if (value === "+" || value === "-" || value === "*" || value === "/") {
       return false;
     } else {
-      display.value += item;
+      display.innerHTML += item;
     }
   }
 
@@ -290,7 +314,7 @@ onkeydown = event => {
   }
 
   if (item === ".") {
-    const value = display.value.slice(-1);
+    const value = display.innerHTML.slice(-1);
 
     if (
       value === "+" ||
@@ -303,12 +327,12 @@ onkeydown = event => {
     ) {
       return false;
     } else {
-      display.value += item;
+      display.innerHTML += item;
     }
   }
 
   if (item === "(") {
-    const value = display.value.slice(-1);
+    const value = display.innerHTML.slice(-1);
 
     if (
       value === "+" ||
@@ -317,54 +341,25 @@ onkeydown = event => {
       value === "/" ||
       value === item
     ) {
-      display.value += item;
+      display.innerHTML += item;
     } else {
       return false;
     }
   }
 
   if (item === ")") {
-    const value = display.value.slice(-1);
+    const value = display.innerHTML.slice(-1);
 
     if (
       value === "+" ||
       value === "-" ||
       value === "*" ||
       value === "/" ||
-      display.value.length < 2
+      display.innerHTML.length < 2
     ) {
       return false;
     } else {
-      display.value += item;
+      display.innerHTML += item;
     }
   }
 };
-
-
-//ADVANCED
-
-
-advBtns[0].onclick = () => {
-  display.value = display.value * display.value;
-
-
-
-  const p = document.createElement("p");
-  p.innerHTML = display.value;
-
-history.insertBefore(p, history.firstChild);
-
-  if (history.children.length > 5) {
-    history.lastChild.remove();
-  }
-
-  if (display.value === "Infinity" || display.value === "-Infinity") {
-    display.value = 0;
-    p.innerHTML = `JS cant calc more :( `;
-    history.insertBefore(p, history.firstChild);
-
-    if (history.children.length > 5) {
-      history.lastChild.remove();
-    }
-  }
-}

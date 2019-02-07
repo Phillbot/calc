@@ -4,73 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
     <link rel="stylesheet" href="calc.css" />
     <title>Calculator</title>
   </head>
   <body>
     <div class="calc">
-      <div class="display-main">
-        <input class="calc-display" type="text" disabled value="0" />
-      </div>
-
+      <div class="calc-display">0</div>
       <div class="history"></div>
 
       <div class="panel">
-        <div class="numbers">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>0</button>
+        <div class="keyboard">
+          <div class="numbers">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>0</button>
+          </div>
+
+          <div class="operations">
+            <button>+</button>
+            <button>-</button>
+            <button>*</button>
+            <button>/</button>
+          </div>
+
+          <div class="parentheses">
+            <button>(</button>
+            <button>)</button>
+          </div>
+
+          <div class="other-math">
+            <button>.</button>
+            <button>C</button>
+            <button>B</button>
+            <button>√</button>
+            <button>%</button>
+            <button class="advanced">x<span>2</span></button>
+          </div>
+
+          <div class="equally">
+            <button>=</button>
+          </div>
         </div>
-
-        <br />
-
-        <div class="operations">
-          <button>+</button>
-          <button>-</button>
-          <button>*</button>
-          <button>/</button>
-        </div>
-
-        <div class="parentheses">
-          <button>(</button>
-          <button>)</button>
-        </div>
-
-        <div class="other-math">
-          <button>.</button>
-          <button>C</button>
-          <button>B</button>
-          <button>√</button>
-          <button>%</button>
-        </div>
-
-        <div class="equally">
-          <button>=</button>
-        </div>
-      </div>
-
-      <button class="show-advanced">Advanced</button>
-    </div>
-
-    <div class="advanced-panel">
-      <div>
-        <button class="advanced">x<span>2</span></button>
-        <button class="advanced disable" dis>cos</button>
-        <button class="advanced disable">sin</button>
-        <button class="advanced disable">tan</button>
-        <button class="advanced disable">sinh</button>
-        <button class="advanced disable">cosh</button>
-        <button class="advanced disable">tanh</button>
       </div>
     </div>
 
-    <script src="calc.js"></script>
+    <script src="min.js"></script>
   </body>
 </html>
