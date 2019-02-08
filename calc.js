@@ -45,6 +45,19 @@ const historyLength = () => {
   }
 };
 
+const infinityCheck = (historyLength, lengthFix = undefined, p) => {
+  if (display.innerHTML === "Infinity" || display.innerHTML === "-Infinity") {
+    display.innerHTML = 0;
+    p.innerHTML = `JS cant calc more :( `;
+    history.insertBefore(p, history.firstChild);
+
+    historyLength();
+    if (lengthFix !== undefined) {
+      lengthFix(display);
+    }
+  }
+};
+
 // =
 
 const quallyFunc = () => {
@@ -61,14 +74,7 @@ const quallyFunc = () => {
   history.insertBefore(p, history.firstChild);
 
   historyLength();
-
-  if (display.innerHTML === "Infinity" || display.innerHTML === "-Infinity") {
-    display.innerHTML = 0;
-    p.innerHTML = `JS cant calc more :( `;
-    history.insertBefore(p, history.firstChild);
-
-    historyLength();
-  }
+  infinityCheck(historyLength, undefined, p);
 };
 
 equally.onclick = () => {
@@ -235,15 +241,7 @@ advBtns[0].onclick = () => {
 
   historyLength();
   lengthFix(display);
-
-  if (display.innerHTML === "Infinity" || display.innerHTML === "-Infinity") {
-    display.innerHTML = 0;
-    p.innerHTML = `JS cant calc more :( `;
-    history.insertBefore(p, history.firstChild);
-
-    historyLength();
-    lengthFix(display);
-  }
+  infinityCheck(historyLength, lengthFix, p);
 };
 
 //C
