@@ -1,0 +1,13 @@
+.calc {
+  width: 325px;
+  height: 500px;
+  min-width: 325px;
+  min-height: 500px;
+  resize: both;
+  overflow: auto;
+  background: rgba(235, 235, 235, 0.295);
+  box-sizing: border-box;
+  box-shadow: 1px 3px 7px -1px rgba(0, 0, 0, 0.315);
+  border: 0.5px solid rgba(0, 0, 0, 0.329);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

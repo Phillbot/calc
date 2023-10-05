@@ -1,0 +1,43 @@
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  height: calc(100% - 115px - 19%);
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  .keyboard-key {
+    width: 23.3%;
+    height: 15.4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background: rgb(255, 255, 255);
+    margin: 2px;
+    box-shadow: 1px 3px 7px -1px rgba(0, 0, 0, 0.144);
+
+    &_action {
+      background: rgb(252, 251, 249);
+      font-size: 1em;
+    }
+
+    &_number,
+    &_change,
+    &_separate {
+      background: rgb(255, 255, 255);
+      font-size: 1em;
+    }
+
+    &_equality {
+      font-size: 1.4em;
+      background: rgb(31, 78, 167);
+      color: #ffffff;
+    }
+
+    &:hover {
+      filter: saturate(10);
+    }
+  }
+}
