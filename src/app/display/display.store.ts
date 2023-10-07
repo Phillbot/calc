@@ -1,7 +1,8 @@
-import { injectable } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
-import { DisplayState } from './types';
 import 'reflect-metadata';
+import { KeyboardStore } from '../keyboard/keyboard.store';
+import { DisplayState } from './types';
 
 @injectable()
 export class DisplayStore {
@@ -11,7 +12,7 @@ export class DisplayStore {
   @observable
   private _state = DisplayState.EnterWords;
 
-  constructor() {
+  constructor(@inject(KeyboardStore) private _keyboardStore: KeyboardStore) {
     makeObservable(this);
   }
 
@@ -26,5 +27,9 @@ export class DisplayStore {
   @action
   setState(state: DisplayState): void {
     this._state = state;
+  }
+
+  get keys() {
+    return this._keyboardStore.keys;
   }
 }

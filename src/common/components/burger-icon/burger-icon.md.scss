@@ -1,4 +1,4 @@
-.burger-icon-wrapper {
+.burger {
   width: 40px;
   height: 35px;
   display: flex;
@@ -7,22 +7,22 @@
   align-content: center;
   border-radius: 4px;
 
-  &:hover {
-    background: rgb(240, 239, 239);
+  &__icon {
+    width: 18px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0 auto;
   }
-}
 
-.burger-icon {
-  width: 18px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin: 0 auto;
-
-  div {
+  &__icon-element {
     margin: 2px 0;
     width: 100%;
     height: 1px;
     background: black;
+  }
+
+  &:hover {
+    background: rgb(240, 239, 239);
   }
 }

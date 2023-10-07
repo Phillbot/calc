@@ -18,8 +18,8 @@ export class Display extends Component {
   override render(): ReactNode {
     return (
       <div className={styles.display}>
-        <div className={styles['display-action-value']}>205.56 +</div>
-        <div className={styles['display-value']}>205.56</div>
+        <div className={styles.displayActionValue}>205.56 +</div>
+        <div className={styles.displayValue}>{this._displayStore.keys.map((k) => k)}</div>
       </div>
     );
   }

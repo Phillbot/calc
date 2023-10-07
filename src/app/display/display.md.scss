@@ -6,7 +6,7 @@
   padding: 10px;
   box-sizing: border-box;
 
-  .display-action-value {
+  &__action-value {
     position: absolute;
     top: 15%;
     right: 15px;
@@ -14,7 +14,7 @@
     color: grey;
   }
 
-  .display-value {
+  &__value {
     font-size: 3em;
     font-weight: 500;
     color: black;

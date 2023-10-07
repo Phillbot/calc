@@ -5,29 +5,29 @@
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-}
 
-.left-container {
-  display: flex;
-  margin-left: 20px;
+  &__title {
+    display: flex;
+    margin-left: 20px;
+  }
 
-  .left-container-icon {
+  &__title-icon {
     width: 15px;
     height: 15px;
     background: url('./images/icon.png') no-repeat;
     background-size: contain;
   }
 
-  .left-container-title {
+  &__title-app-name {
     margin-left: 15px;
     font-size: 0.75em;
   }
-}
 
-.controls {
-  display: flex;
+  &__controls {
+    display: flex;
+  }
 
-  .controls-minimize {
+  &__controls-minimize {
     position: relative;
     display: flex;
     align-items: center;
@@ -35,20 +35,20 @@
     width: 46px;
     height: 32px;
 
-    .controls-minimize-icon {
-      margin: 0 auto;
-      width: 10px;
-      height: 0.2px;
-      background: rgba(0, 0, 0, 0.555);
-      box-sizing: border-box;
-    }
-
     &:hover {
       background-color: rgba(141, 141, 141, 0.233);
     }
   }
 
-  .controls-maximize {
+  &__controls-minimize-icon {
+    margin: 0 auto;
+    width: 10px;
+    height: 0.2px;
+    background: rgba(0, 0, 0, 0.555);
+    box-sizing: border-box;
+  }
+
+  &__controls-maximize {
     position: relative;
     display: flex;
     align-items: center;
@@ -56,20 +56,20 @@
     width: 46px;
     height: 32px;
 
-    .controls-maximize-icon {
-      margin: 0 auto;
-      width: 10px;
-      height: 10px;
-      border: 1px solid rgba(0, 0, 0, 0.555);
-      box-sizing: border-box;
-    }
-
     &:hover {
       background-color: rgba(141, 141, 141, 0.233);
     }
   }
 
-  .controls-close {
+  &__controls-maximize-icon {
+    margin: 0 auto;
+    width: 10px;
+    height: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.555);
+    box-sizing: border-box;
+  }
+
+  &__controls-close {
     position: relative;
     display: flex;
     align-items: center;

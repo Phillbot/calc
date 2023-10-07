@@ -5,32 +5,34 @@
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-}
 
-.left-container {
-  display: flex;
-  align-items: center;
+  &__left-container {
+    display: flex;
+    align-items: center;
+  }
 
-  .left-container-burger {
+  &__left-container-burger {
     margin: 0 5px;
   }
 
-  .left-container-mode {
+  &__left-container-mode {
     font-size: 1.2em;
     font-weight: 500;
   }
 
-  .left-container-keep {
+  &__left-container-keep {
     margin-left: 20px;
     width: 16px;
     height: 16px;
     border: 1px solid black;
     box-sizing: border-box;
   }
-}
 
-.right-container {
-  .right-container-history {
+  &__right-container {
+    display: block;
+  }
+
+  &__right-container-history {
     width: 18px;
     height: 18px;
     border: 1px solid black;

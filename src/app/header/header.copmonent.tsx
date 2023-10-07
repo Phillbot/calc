@@ -6,18 +6,18 @@ export class Header extends Component {
   override render(): ReactNode {
     return (
       <div className={styles.header}>
-        <div className={styles['left-container']}>
-          <div className={styles['left-container-icon']}></div>
-          <div className={styles['left-container-title']}>Calculator</div>
+        <div className={styles.headerTitle}>
+          <div className={styles.headerTitleIcon}></div>
+          <div className={styles.headerTitleAppName}>Calculator</div>
         </div>
-        <div className={styles.controls}>
-          <div className={styles['controls-minimize']}>
-            <div className={styles['controls-minimize-icon']}></div>
+        <div className={styles.headerControls}>
+          <div className={styles.headerControlsMinimize}>
+            <div className={styles.headerControlsMinimizeIcon}></div>
           </div>
-          <div className={styles['controls-maximize']}>
-            <div className={styles['controls-maximize-icon']}></div>
+          <div className={styles.headerControlsMaximize}>
+            <div className={styles.headerControlsMaximizeIcon}></div>
           </div>
-          <div className={styles['controls-close']}></div>
+          <div className={styles.headerControlsClose}></div>
         </div>
       </div>
     );

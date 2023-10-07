@@ -1,12 +1,12 @@
-export type ControlElement = {
+export type HistoryElement = {
   value: string;
   description: string;
-  state: ControlElementState;
+  state: HistoryElementState;
 };
 
-export type ControlElementState = 'active' | 'inactive';
+export type HistoryElementState = 'active' | 'inactive';
 
-export const controlElements: ControlElement[] = [
+export const historyElements: HistoryElement[] = [
   {
     value: 'MC',
     description: 'Clear all memory (Ctrl+L)',

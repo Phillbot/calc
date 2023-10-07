@@ -48,6 +48,7 @@ const config = {
             options: {
               modules: {
                 localIdentName: isProduction ? '[local]-[hash:base64:6]' : '[local]--[hash:base64:6]',
+                exportLocalsConvention: 'camelCaseOnly',
               },
             },
           },

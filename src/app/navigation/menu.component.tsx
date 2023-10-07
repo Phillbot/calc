@@ -6,17 +6,17 @@ import styles from './navigation.md.scss';
 export class Navigation extends Component {
   override render(): React.ReactNode {
     return (
-      <div className={styles['navigation']}>
-        <div className={styles['left-container']}>
-          <div className={styles['left-container-burger']}>
+      <div className={styles.navigation}>
+        <div className={styles.navigationLeftContainer}>
+          <div className={styles.navigationLeftContainerBurger}>
             <BurgerIcon />
           </div>
-          <div className={styles['left-container-mode']}>Standard</div>
-          <div className={styles['left-container-keep']}></div>
+          <div className={styles.navigationLeftContainerMode}>Standard</div>
+          <div className={styles.navigationLeftContainerKeep}></div>
         </div>
 
-        <div className={styles['right-container']}>
-          <div className={styles['right-container-history']}></div>
+        <div className={styles.navigationRightContainer}>
+          <div className={styles.navigationRightContainerHistory}></div>
         </div>
       </div>
     );

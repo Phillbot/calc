@@ -1,16 +1,27 @@
 import React, { Component, ReactNode } from 'react';
+import { resolve } from 'inversify-react';
+import { observer } from 'mobx-react';
 import classNames from 'classnames';
 import assertNever from 'src/common/utils/assert-never';
 
 import styles from './keyboard.md.scss';
 import { Key, KeyType, keys } from './keys';
+import { KeyboardStore } from './keyboard.store';
 
+@observer
 export class Keyboard extends Component {
+  @resolve
+  private readonly _keyboardStore: KeyboardStore;
+
   override render(): ReactNode {
     return (
       <div className={styles.keyboard}>
         {keys.map(({ key, keyType }: Key) => (
-          <div className={classNames(styles['keyboard-key'], keyTypeToClassName(keyType))} key={key}>
+          <div
+            onClick={() => this._keyboardStore.addKey(key)}
+            className={classNames(styles.keyboardKey, keyTypeToClassName(keyType))}
+            key={key}
+          >
             {key}
           </div>
         ))}
@@ -22,15 +33,15 @@ export class Keyboard extends Component {
 function keyTypeToClassName(keyType: KeyType) {
   switch (keyType) {
     case 'action':
-      return styles['keyboard-key_action'];
+      return styles.keyboardKeyAction;
     case 'number':
-      return styles['keyboard-key_number'];
+      return styles.keyboardKeyNumber;
     case 'equality':
-      return styles['keyboard-key_equality'];
+      return styles.keyboardKeyEquality;
     case 'separate':
-      return styles['keyboard-key_separate'];
+      return styles.keyboardKeySeparate;
     case 'change':
-      return styles['keyboard-key_change'];
+      return styles.keyboardKeyChange;
     default:
       assertNever(keyType);
   }
