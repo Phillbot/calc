@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { BurgerIcon } from 'src/common/components/burger-icon/burger-icon.component';
+import { BurgerIcon } from '@common/components/burger-icon/burger-icon.component';
+
 import styles from './navigation.md.scss';
 
 export class Navigation extends Component {
@@ -12,11 +13,10 @@ export class Navigation extends Component {
             <BurgerIcon />
           </div>
           <div className={styles.navigationLeftContainerMode}>Standard</div>
-          <div className={styles.navigationLeftContainerKeep}></div>
+          <div className={styles.navigationLeftContainerKeep} />
         </div>
-
         <div className={styles.navigationRightContainer}>
-          <div className={styles.navigationRightContainerHistory}></div>
+          <div className={styles.navigationRightContainerHistory} />
         </div>
       </div>
     );

@@ -11,7 +11,11 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "lib": ["es6", "dom"]
+    "lib": ["es6", "dom"],
+    "paths": {
+      "@common/*": ["src/common/*"],
+      "@app/*": ["src/app/*"]
+    }
   },
   "include": ["./src/**/*", "declaration.d.ts"],
   "exclude": ["node_modules"]

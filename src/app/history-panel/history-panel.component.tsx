@@ -12,7 +12,10 @@ export class HistoryPanel extends Component {
         {historyElements.map(({ state, value, description }) => (
           <div
             key={value}
-            className={classNames(styles.historyPanelElement, controlElementStateToClassName(state))}
+            className={classNames(
+              styles.historyPanelElement,
+              controlElementStateToClassName(state)
+            )}
             title={state === 'active' ? description : null}
           >
             {value}

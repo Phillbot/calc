@@ -16,11 +16,6 @@ const config = {
     filename: '[name].js',
     chunkFilename: '[name].chunk.bundle.js',
   },
-  devServer: {
-    open: true,
-    host: 'localhost',
-    port: 3000,
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
@@ -47,7 +42,9 @@ const config = {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: isProduction ? '[local]-[hash:base64:6]' : '[local]--[hash:base64:6]',
+                localIdentName: isProduction
+                  ? '[local]-[hash:base64:6]'
+                  : '[local]--[hash:base64:6]',
                 exportLocalsConvention: 'camelCaseOnly',
               },
             },
@@ -111,10 +108,6 @@ const config = {
 };
 
 module.exports = () => {
-  if (isProduction) {
-    config.mode = 'production';
-  } else {
-    config.mode = 'development';
-  }
+  config.mode = isProduction ? 'production' : 'development';
   return config;
 };

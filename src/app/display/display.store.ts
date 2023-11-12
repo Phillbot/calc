@@ -1,35 +1,41 @@
 import { inject, injectable } from 'inversify';
-import { action, makeObservable, observable } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import 'reflect-metadata';
+
 import { KeyboardStore } from '../keyboard/keyboard.store';
-import { DisplayState } from './types';
 
 @injectable()
 export class DisplayStore {
-  @observable
-  private readonly _name = 'display';
-
-  @observable
-  private _state = DisplayState.EnterWords;
-
   constructor(@inject(KeyboardStore) private _keyboardStore: KeyboardStore) {
     makeObservable(this);
   }
 
-  get name() {
-    return this._name;
+  get currentValue() {
+    if (this._keyboardStore.resultValue) {
+      return this._keyboardStore.resultValue;
+    }
+
+    if (this._keyboardStore.secondValue) {
+      return this._keyboardStore.secondValue;
+    }
+
+    return this._keyboardStore.firstValue;
   }
 
-  get state() {
-    return this._state;
-  }
+  @computed
+  get historyValue() {
+    if (this._keyboardStore.currentActionKey) {
+      const fistHalf =
+        this._keyboardStore.memoResultValue || this._keyboardStore.firstValue;
+      const secondHalf = this._keyboardStore.secondValue
+        ? this._keyboardStore.secondValue
+        : '';
 
-  @action
-  setState(state: DisplayState): void {
-    this._state = state;
-  }
+      return (
+        fistHalf + ' ' + this._keyboardStore.currentActionKey + ' ' + secondHalf
+      );
+    }
 
-  get keys() {
-    return this._keyboardStore.keys;
+    return null;
   }
 }

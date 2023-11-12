@@ -1,31 +1,29 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "import", "react", "react-hooks", "prettier"],
+  "plugins": ["@typescript-eslint", "import", "react", "react-hooks"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
-
-      "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
-      ],
-
+      "extends": ["plugin:@typescript-eslint/recommended"],
       "parserOptions": {
         "project": ["./tsconfig.json"]
       },
       "rules": {
-        "prettier/prettier": "error",
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/explicit-module-boundary-types": "off",
-        "@typescript-eslint/no-unsafe-return": "off",
-        "@typescript-eslint/no-unsafe-call": "off",
-        "@typescript-eslint/unbound-method": "off",
-        "@typescript-eslint/no-unsafe-assignment": "off",
-        "@typescript-eslint/no-unsafe-member-access": "off",
-        "@typescript-eslint/no-explicit-any": "off",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
+        "react/self-closing-comp": [
+          "error",
+          {
+            "component": true,
+            "html": true
+          }
+        ],
+        "sort-imports": [
+          "error",
+          {
+            "ignoreDeclarationSort": true
+          }
+        ],
         "@typescript-eslint/quotes": [
           "error",
           "single",
@@ -33,7 +31,10 @@
             "allowTemplateLiterals": true
           }
         ],
-        "import/order": "error"
+        "import/order": ["error"],
+        "no-console": "error",
+        "no-extra-boolean-cast": "error",
+        "no-alert": "error"
       }
     }
   ]

@@ -1,1 +1,3 @@
-export const Symbols = {};
+export const Symbols = {
+  Example: Symbol.for('Example'),
+};

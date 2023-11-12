@@ -3,7 +3,9 @@ export function assertNever(value: never, noThrow?: boolean): never {
     return value;
   }
 
-  throw new Error(`Unhandled discriminated union member: ${JSON.stringify(value)}`);
+  throw new Error(
+    `Unhandled discriminated union member: ${JSON.stringify(value)}`
+  );
 }
 
 export default assertNever;

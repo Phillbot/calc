@@ -1,105 +1,132 @@
 export type Key = {
-  key: string;
-  keyType: KeyType;
+  value: string;
+  type: KeyType;
+  state: KeyState;
 };
 
 export type KeyType = 'action' | 'number' | 'separate' | 'equality' | 'change';
 
-export const keys = [
+export type KeyState = 'available' | 'in progress';
+
+export const keys: Key[] = [
   {
-    key: '%',
-    keyType: 'action',
+    value: '%',
+    type: 'action',
+    state: 'available',
   },
   {
-    key: 'CE',
-    keyType: 'action',
+    value: 'CE',
+    type: 'action',
+    state: 'in progress',
   },
   {
-    key: 'C',
-    keyType: 'action',
+    value: 'C',
+    type: 'action',
+    state: 'available',
   },
   {
-    key: '⌫',
-    keyType: 'action',
+    value: '⌫',
+    type: 'action',
+    state: 'available',
   },
   {
-    key: '1/x',
-    keyType: 'action',
+    value: '1/x',
+    type: 'action',
+    state: 'in progress',
   },
   {
-    key: 'x2',
-    keyType: 'action',
+    value: 'x2',
+    type: 'action',
+    state: 'in progress',
   },
   {
-    key: '2Vx',
-    keyType: 'action',
+    value: '2Vx',
+    type: 'action',
+    state: 'in progress',
   },
   {
-    key: '÷',
-    keyType: 'action',
+    value: '÷',
+    type: 'action',
+    state: 'available',
   },
   {
-    key: '7',
-    keyType: 'number',
+    value: '7',
+    type: 'number',
+    state: 'available',
   },
   {
-    key: '8',
-    keyType: 'number',
+    value: '8',
+    type: 'number',
+    state: 'available',
   },
   {
-    key: '9',
-    keyType: 'number',
+    value: '9',
+    type: 'number',
+    state: 'available',
   },
   {
-    key: '×',
-    keyType: 'action',
+    value: '×',
+    type: 'action',
+    state: 'available',
   },
   {
-    key: '4',
-    keyType: 'number',
+    value: '4',
+    type: 'number',
+    state: 'available',
   },
   {
-    key: '5',
-    keyType: 'number',
+    value: '5',
+    type: 'number',
+    state: 'available',
   },
   {
-    key: '6',
-    keyType: 'number',
+    value: '6',
+    type: 'number',
+    state: 'available',
   },
   {
-    key: '-',
-    keyType: 'action',
+    value: '-',
+    type: 'action',
+    state: 'available',
   },
   {
-    key: '1',
-    keyType: 'number',
+    value: '1',
+    type: 'number',
+    state: 'available',
   },
   {
-    key: '2',
-    keyType: 'number',
+    value: '2',
+    type: 'number',
+    state: 'available',
   },
   {
-    key: '3',
-    keyType: 'number',
+    value: '3',
+    type: 'number',
+    state: 'available',
   },
   {
-    key: '+',
-    keyType: 'action',
+    value: '+',
+    type: 'action',
+    state: 'available',
   },
   {
-    key: '+/-',
-    keyType: 'change',
+    value: '+/-',
+    type: 'change',
+    state: 'in progress',
   },
   {
-    key: '0',
-    keyType: 'number',
+    value: '0',
+    type: 'number',
+    state: 'available',
   },
   {
-    key: '.',
-    keyType: 'separate',
+    value: '.',
+    type: 'separate',
+    state: 'in progress',
   },
   {
-    key: '=',
-    keyType: 'equality',
+    value: '=',
+    type: 'equality',
+    state: 'available',
   },
 ];

@@ -7,9 +7,9 @@ export class BurgerIcon extends PureComponent {
     return (
       <div className={styles.burger}>
         <div className={styles.burgerIcon}>
-          <div className={styles.burgerIconElement}></div>
-          <div className={styles.burgerIconElement}></div>
-          <div className={styles.burgerIconElement}></div>
+          <div className={styles.burgerIconElement} />
+          <div className={styles.burgerIconElement} />
+          <div className={styles.burgerIconElement} />
         </div>
       </div>
     );

@@ -36,6 +36,11 @@
       color: #ffffff;
     }
 
+    &_in-progress {
+      opacity: 0.2;
+      cursor: no-drop;
+    }
+
     &:hover {
       filter: saturate(10);
     }
