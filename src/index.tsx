@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider as DependencyInjectionProvider } from 'inversify-react';
+import 'reflect-metadata';
 
 import { container } from '@common/IoC/container';
 import { Calc } from './app/calc-component';

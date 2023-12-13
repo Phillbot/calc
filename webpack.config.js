@@ -15,6 +15,7 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     chunkFilename: '[name].chunk.bundle.js',
+    assetModuleFilename: 'images/[hash][ext][query]',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -58,7 +59,7 @@ const config = {
         ],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i, // separate fonts
         type: 'asset',
       },
 

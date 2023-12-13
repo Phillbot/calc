@@ -1,6 +1,5 @@
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable } from 'mobx';
-import 'reflect-metadata';
 
 import { KeyboardStore } from '../keyboard/keyboard.store';
 
